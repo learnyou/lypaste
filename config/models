@@ -17,3 +17,6 @@ Paste
     markdown Markdown
     html Html
     time UTCTime
+    deleteKey Text
+    UniquePasteContent markdown
+    UniquePasteKey deleteKey
