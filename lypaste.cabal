@@ -23,6 +23,8 @@ library
                      Handler.Common
                      Handler.Home
                      Handler.PasteView
+                     Handler.PasteEdit
+                     Handler.PasteDelete
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT
