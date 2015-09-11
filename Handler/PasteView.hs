@@ -10,6 +10,7 @@ getPasteViewR pasteId = do
               Nothing -> notFound
   defaultLayout $
     [whamlet|
+      <a href=@{PasteEditR pasteId}>Edit this paste</a>
       <div .container>
         #{pasteHtml paste}
     |]
