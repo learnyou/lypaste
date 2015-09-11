@@ -1,0 +1,5 @@
+#{extra}
+<div .form-group>
+  ^{fvInput markdownView}
+<div .form-group>
+  ^{fvInput submitButtonView}
