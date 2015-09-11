@@ -22,3 +22,9 @@ test:
 
 prod:
 	stack build
+
+clean:
+	stack clean
+
+really_clean:
+	rm -rf .stack-work
