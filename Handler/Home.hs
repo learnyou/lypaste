@@ -3,27 +3,38 @@ module Handler.Home where
 import qualified Data.Text as T
 import Data.Time
 import Import
+import Text.Pandoc
 import Yesod.Form.Bootstrap3
 import Yesod.Markdown
 
+lypasteReaderOptions :: ReaderOptions
+lypasteReaderOptions =
+  yesodDefaultReaderOptions { readerExtensions = pandocExtensions }
+
+lypasteWriterOptions :: WriterOptions
+lypasteWriterOptions =
+  yesodDefaultWriterOptions
+    { writerHTMLMathMethod = MathJax
+                               "http://static.learnyou.org/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    }
+
 pasteForm :: Maybe Text -> Html ->  MForm Handler (FormResult Paste, Widget)
 pasteForm existingText extra = do
-  (markdownRes, markdownView) <- mreq textareaField (bfs ("Markdown Input" :: Text))
-                                   (fmap Textarea existingText)
+  (markdownRes, markdownView) <- mreq markdownField (bfs ("Markdown Input" :: Text))
+                                   (fmap Markdown existingText)
   (_, submitButtonView) <- mbootstrapSubmit ("Paste" :: BootstrapSubmit Text)
-  let markdownRes' = Markdown <$> unTextarea <$> markdownRes
-      htmlRes =
-        case fmap markdownToHtml markdownRes' of
+  let htmlRes =
+        case parseMarkdown lypasteReaderOptions <$> markdownRes of
           FormSuccess result ->
             case result of
               Left err -> FormFailure [T.pack (show err)]
-              Right x  -> FormSuccess x
+              Right pd -> FormSuccess $ writePandoc lypasteWriterOptions pd
           -- Stupid GHC
           FormFailure f -> FormFailure f
           FormMissing -> FormMissing
       widget = $(widgetFile "paste-form")
   time <- liftIO getCurrentTime
-  return (Paste <$> markdownRes' <*> htmlRes <*> pure time, widget)
+  return (Paste <$> markdownRes <*> htmlRes <*> pure time, widget)
 
 -- This is a handler function for the GET request method on the HomeR
 -- resource pattern. All of your resource patterns are defined in
