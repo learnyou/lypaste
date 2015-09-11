@@ -1,40 +1,7 @@
 module Handler.Home where
 
-import qualified Data.Text as T
-import Data.Time
 import Import
-import Text.Pandoc
-import Yesod.Form.Bootstrap3
-import Yesod.Markdown
-
-lypasteReaderOptions :: ReaderOptions
-lypasteReaderOptions =
-  yesodDefaultReaderOptions { readerExtensions = pandocExtensions }
-
-lypasteWriterOptions :: WriterOptions
-lypasteWriterOptions =
-  yesodDefaultWriterOptions
-    { writerHTMLMathMethod = MathJax
-                               "http://static.learnyou.org/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
-    }
-
-pasteForm :: Maybe Text -> Html ->  MForm Handler (FormResult Paste, Widget)
-pasteForm existingText extra = do
-  (markdownRes, markdownView) <- mreq markdownField (bfs ("Markdown Input" :: Text))
-                                   (fmap Markdown existingText)
-  (_, submitButtonView) <- mbootstrapSubmit ("Paste" :: BootstrapSubmit Text)
-  let htmlRes =
-        case parseMarkdown lypasteReaderOptions <$> markdownRes of
-          FormSuccess result ->
-            case result of
-              Left err -> FormFailure [T.pack (show err)]
-              Right pd -> FormSuccess $ writePandoc lypasteWriterOptions pd
-          -- Stupid GHC
-          FormFailure f -> FormFailure f
-          FormMissing -> FormMissing
-      widget = $(widgetFile "paste-form")
-  time <- liftIO getCurrentTime
-  return (Paste <$> markdownRes <*> htmlRes <*> pure time, widget)
+import Model.Paste
 
 -- This is a handler function for the GET request method on the HomeR
 -- resource pattern. All of your resource patterns are defined in
@@ -70,4 +37,17 @@ postHomeR = do
         |]
     FormSuccess paste -> do
       pasteID <- runDB (insert paste)
-      redirect $ PasteViewR pasteID
+      defaultLayout $ do
+        let delKey = pasteDeleteKey paste
+        [whamlet|
+          <p>The following URLs only show up once, so please save them
+          <ul>
+            <li>
+              If you want to delete this paste, visit
+              <a href=@{PasteDeleteR delKey}>&lt;@{PasteDeleteR delKey}&gt;</a>.
+            <li>
+              If you want to edit it, please visit
+              <a href=@{PasteEditR pasteID}>&lt;@{PasteEditR pasteID}&gt;</a>.
+          <div .container>
+            #{pasteHtml paste}
+        |]
