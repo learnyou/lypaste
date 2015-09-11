@@ -1,5 +1,3 @@
 textarea { font-family: monospace
-         ; white-space: nowrap
-         ; overflow: auto
          ; height: 450px
          }
