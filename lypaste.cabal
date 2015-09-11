@@ -13,18 +13,21 @@ Flag library-only
 
 library
     hs-source-dirs: ., app
-    exposed-modules: Application
-                     Foundation
-                     Import
-                     Import.NoFoundation
-                     Model
-                     Settings
-                     Settings.StaticFiles
-                     Handler.Common
-                     Handler.Home
-                     Handler.PasteView
-                     Handler.PasteEdit
-                     Handler.PasteDelete
+    exposed-modules:
+       Application
+       Foundation
+       Handler.Common
+       Handler.Home
+       Handler.PasteDelete
+       Handler.PasteEdit
+       Handler.PasteView
+       Handler.PasteRaw
+       Import
+       Import.NoFoundation
+       Model
+       Model.Paste
+       Settings
+       Settings.StaticFiles
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT
@@ -33,36 +36,39 @@ library
         ghc-options:   -Wall -fwarn-tabs -O2
 
     default-extensions:
-      CPP                                
-      DeriveDataTypeable                 
-      EmptyDataDecls                     
-      FlexibleContexts                   
-      FlexibleInstances                  
-      GADTs                              
-      GeneralizedNewtypeDeriving         
+      CPP
+      DeriveDataTypeable
+      EmptyDataDecls
+      FlexibleContexts
+      FlexibleInstances
+      GADTs
+      GeneralizedNewtypeDeriving
       LambdaCase
-      MultiParamTypeClasses              
-      NoImplicitPrelude                  
-      NoMonomorphismRestriction          
-      OverloadedStrings                  
-      QuasiQuotes                        
-      RecordWildCards                    
+      MultiParamTypeClasses
+      NoImplicitPrelude
+      NoMonomorphismRestriction
+      OverloadedStrings
+      QuasiQuotes
+      RecordWildCards
       TemplateHaskell
-      TupleSections                      
-      TypeFamilies                       
-      ViewPatterns                       
+      TupleSections
+      TypeFamilies
+      ViewPatterns
 
     build-depends:
         aeson
       , base ==4.8.*
+      , base16-bytestring
       , bytestring
       , classy-prelude
       , classy-prelude-conduit
       , classy-prelude-yesod
       , conduit
       , containers
+      , crypto-random
       , data-default
       , directory
+      , either
       , fast-logger
       , file-embed
       , hjsmin
