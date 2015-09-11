@@ -1,3 +1,5 @@
+-- -*- mode: text -*-
+
 User
     ident Text
     password Text Maybe
@@ -10,3 +12,8 @@ Email
     UniqueEmail email
 
  -- By default this file is used in Model.hs (which is imported by Foundation.hs)
+
+Paste
+    markdown Markdown
+    html Html
+    time UTCTime
