@@ -5,6 +5,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="http://static.learnyou.org/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="http://static.learnyou.org/jquery.js">
     ^{pageHead pc}
 
   <body>
@@ -15,3 +17,6 @@
       <footer>
         Copyright &copy; 2015, Learn You!. The source code for this site can be
         found <a href="https://github.com/learnyou/lypaste">on GitHub</a>.
+    <script type="text/javascript" src="http://static.learnyou.org/bootstrap/js/bootstrap.min.js">
+    <script type="text/javascript" src="http://static.learnyou.org/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+
