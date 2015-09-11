@@ -1,5 +1,5 @@
 #{extra}
-<div .form-group>
+<div .form-group .paste-input>
   ^{fvInput markdownView}
 <div .form-group>
   ^{fvInput submitButtonView}

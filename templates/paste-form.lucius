@@ -1,3 +1,4 @@
-textarea { font-family: monospace
-         ; height: 450px
-         }
+.paste-input { font-family: monospace
+             ; height: 450px
+             }
+         
