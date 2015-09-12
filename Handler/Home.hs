@@ -26,12 +26,16 @@ postHomeR = do
     FormMissing ->
       defaultLayout $
         [whamlet|
+          <p .error>Form is missing
           <form role=form method=post target=@{HomeR} enctype=#{enctype}>
             ^{widget}
         |]
     FormFailure errors -> do
       defaultLayout $
         [whamlet|
+          <ul>
+            $forall err <- errors
+              <li>#{err}
           <form role=form method=post target=@{HomeR} enctype=#{enctype}>
             ^{widget}
         |]
