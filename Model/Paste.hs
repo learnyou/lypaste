@@ -17,10 +17,10 @@ instance Monad FormResult where
   FormFailure x >>= _ = FormFailure x
   FormSuccess x >>= f = f x
 
-pasteForm :: Maybe Text -> Html ->  MForm Handler (FormResult Paste, Widget)
+pasteForm :: Maybe Markdown -> Html ->  MForm Handler (FormResult Paste, Widget)
 pasteForm existingText extra = do
   (markdownRes, markdownView) <- mreq markdownField (bfs ("Markdown Input" :: Text))
-                                   (fmap Markdown existingText)
+                                   existingText
   (_, submitButtonView) <- mbootstrapSubmit ("Paste" :: BootstrapSubmit Text)
   let widget = $(widgetFile "paste-form")
       html = markdownRes >>= mkHtml
