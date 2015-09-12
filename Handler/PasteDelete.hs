@@ -3,7 +3,7 @@ module Handler.PasteDelete where
 import Import
 
 getPasteDeleteR :: Text -> Handler Html
-getPasteDeleteR text = error "Not yet implemented: getPasteDeleteR"
-
-postPasteDeleteR :: Text -> Handler Html
-postPasteDeleteR text = error "Not yet implemented: postPasteDeleteR"
+getPasteDeleteR text = do
+  _ <- runDB $ getBy404 $ UniquePasteKey text
+  runDB $ deleteBy $ UniquePasteKey text
+  defaultLayout [whamlet|<p>Paste deleted!|]
