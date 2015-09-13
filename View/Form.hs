@@ -1,7 +1,9 @@
 module View.Form where
 
-mkFormView :: url -> enc -> Widget -> Widget
-mkFormview url enctype widget = 
+import Import
+
+mkFormView :: Route App -> Enctype -> Widget -> Widget
+mkFormView url enctype widget = 
   [whamlet|
     <form role=form method=post target=@{url} enctype=#{enctype}>
       ^{widget}
