@@ -1,1 +1,1 @@
-$(textarea).attr(rows, 20);
+$('textarea').attr('rows', 20);
