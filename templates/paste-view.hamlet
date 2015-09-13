@@ -1,0 +1,8 @@
+<ul>
+  <li>
+    <a href=@{PasteEditR pasteId}>Edit this paste
+  <li>
+    <a href=@{PasteRawR pasteId}>Raw
+
+<div .container>
+  #{pasteHtml paste}

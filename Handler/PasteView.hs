@@ -9,8 +9,4 @@ getPasteViewR pasteId = do
               Just x -> return x
               Nothing -> notFound
   defaultLayout $
-    [whamlet|
-      <a href=@{PasteEditR pasteId}>Edit this paste</a>
-      <div .container>
-        #{pasteHtml paste}
-    |]
+    $(widgetFile "paste-view")
