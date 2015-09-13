@@ -6,12 +6,30 @@
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" type="text/css" href="http://static.learnyou.org/bootstrap/css/bootstrap.min.css">
-    <script type="text/javascript" src="http://static.learnyou.org/jquery.js">
     ^{pageHead pc}
 
   <body>
+    <div .navbar .navbar-default>
+      <div .container>
+        <div .navbar-header>
+          <button type="button"
+                  .navbar-toggle
+                  .collapsed
+                  data-toggle="collapse"
+                  data-target="#navbar"
+                  aria-expanded="false"
+                  aria-controls="navbar">
+            <span .sr-only>Toggle navigation
+            <span .icon-bar>
+            <span .icon-bar>
+            <span .icon-bar>
+          <a class="navbar-brand" href=@{HomeR}>Project name
+        <div #navbar .navbar-collapse .collapse>
+          <ul .nav .navbar-nav .navbar-right>
+            <li>
+              <a href=@{PasteNewR}>New Paste
+
     <div class="container">
-      <header>
       <div id="main" role="main">
         ^{pageBody pc}
       <footer .small .text-center .text-muted>
@@ -21,6 +39,7 @@
           The source code for this site can be
           found <a href="https://github.com/learnyou/lypaste">on GitHub</a>.
 
+    <script type="text/javascript" src="http://static.learnyou.org/jquery.js">
     <script type="text/javascript" src="http://static.learnyou.org/bootstrap/js/bootstrap.min.js">
     <script type="text/javascript" src="http://static.learnyou.org/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 
