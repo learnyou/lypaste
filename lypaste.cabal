@@ -20,8 +20,9 @@ library
        Handler.Home
        Handler.PasteDelete
        Handler.PasteEdit
-       Handler.PasteView
+       Handler.PasteNew
        Handler.PasteRaw
+       Handler.PasteView
        Import
        Import.NoFoundation
        Model

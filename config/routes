@@ -8,3 +8,4 @@
 !/#PasteId/edit PasteEditR GET POST
 /delete/#Text PasteDeleteR GET
 !/#PasteId/raw PasteRawR GET
+/new PasteNewR GET POST
