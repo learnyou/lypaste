@@ -19,10 +19,27 @@ instance Monad FormResult where
 
 pasteForm :: Maybe Markdown -> Html ->  MForm Handler (FormResult Paste, Widget)
 pasteForm existingText extra = do
-  (markdownRes, markdownView) <- mreq markdownField (bfs ("Markdown Input" :: Text))
-                                   existingText
+  (markdownRes, markdownView) <- mreq markdownField (bfs ("Markdown Input" :: Text)) existingText
   (_, submitButtonView) <- mbootstrapSubmit ("Paste" :: BootstrapSubmit Text)
-  let widget = $(widgetFile "paste-form")
+  let widget = do
+        toWidget
+          [julius|
+            $('textarea').attr('rows', 20);
+          |]
+        toWidget
+          [lucius|
+            textarea {
+              font-family: monospace;
+              height: 450px;
+            }
+          |]
+        [whamlet|
+          #{extra}
+          <div .form-group .paste-input>
+            ^{fvInput markdownView}
+          <div .form-group>
+            ^{fvInput submitButtonView}
+        |]
       html = markdownRes >>= mkHtml
   time <- liftIO getCurrentTime
   delKey <- liftIO mkDeleteKey
