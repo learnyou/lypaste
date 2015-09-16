@@ -2,6 +2,14 @@ name:              lypaste
 version:           0.0.0
 cabal-version:     >=1.10
 build-type:        Simple
+author:            Peter Harpending
+maintainer:        peter@harpending.org
+license:           AGPL-3
+license-file:      LICENSE
+extra-source-files:
+  LICENSE
+  Makefile
+  README.md
 
 Flag dev
     Description:   Turn on development settings, like auto-reload templates.
@@ -103,11 +111,9 @@ library
 executable  lypaste
     if flag(library-only)
         Buildable: False
-
     main-is:           main.hs
     hs-source-dirs:    app
     build-depends:     base, lypaste
-
     ghc-options:       -threaded -O2 -rtsopts -with-rtsopts=-N
 
 test-suite test
