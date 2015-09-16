@@ -19,7 +19,6 @@ stanzas:
       # You can specify one or more hostnames for your application to respond
       # to. The primary hostname will be used for generating your application
       # root.
-      - 107.170.235.210
       - paste.learnyou.org
 
     # Enable to force Keter to redirect to https
