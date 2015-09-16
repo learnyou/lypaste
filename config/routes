@@ -9,3 +9,5 @@
 /delete/#Text PasteDeleteR GET
 !/#PasteId/raw PasteRawR GET
 /new PasteNewR GET POST
+/browse BrowseR GET
+/browse/#Int BrowsePageR GET

@@ -31,6 +31,8 @@ library
        Handler.PasteNew
        Handler.PasteRaw
        Handler.PasteView
+       Handler.Browse
+       Handler.BrowsePage
        Import
        Import.NoFoundation
        Model
