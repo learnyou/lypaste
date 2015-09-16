@@ -14,8 +14,10 @@ db_setup:
 build:
 	stack build ${DEVFLAGS}
 
+# For some reason, yesod devel isn't properly rebuilding the
+# development version, so we're using the vanilla lypaste executable.
 rundev:
-	stack exec -- yesod devel
+	stack exec -- lypaste
 
 test:
 	stack build ${DEVFLAGS} --test
