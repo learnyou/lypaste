@@ -24,6 +24,8 @@ library
     exposed-modules:
        Application
        Foundation
+       Handler.Browse
+       Handler.BrowsePage
        Handler.Common
        Handler.Home
        Handler.PasteDelete
@@ -31,8 +33,6 @@ library
        Handler.PasteNew
        Handler.PasteRaw
        Handler.PasteView
-       Handler.Browse
-       Handler.BrowsePage
        Import
        Import.NoFoundation
        Model
@@ -81,6 +81,7 @@ library
       , data-default
       , directory
       , either
+      , esqueleto
       , fast-logger
       , file-embed
       , hjsmin
