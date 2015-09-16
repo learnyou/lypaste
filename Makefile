@@ -1,4 +1,5 @@
 DEVFLAGS=--flag lypaste:dev -j 5 
+REMOTE=paste.learnyou.org
 
 all: build rundev
 
@@ -30,3 +31,7 @@ clean:
 
 really_clean:
 	rm -rf .stack-work
+
+keter:
+	stack exec -- yesod keter
+	rsync -avv --progress lypaste.keter ${REMOTE}:/opt/keter/incoming/
