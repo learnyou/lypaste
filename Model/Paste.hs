@@ -39,13 +39,28 @@ pasteForm existingText extra =
                     font-family: monospace;
                     height: 450px;
                   }
+
+                  #pfn-submit-btn {
+                    margin-top: 8px;
+                    margin-right: 30px;
+                    padding-left: 20px;
+                  }
                 |]
               [whamlet|
                   #{extra}
                   <div .form-group>
-                    ^{fvInput markdownView}
+                    <div .navbar>
+                      <div .container #newpaste-submit>
+                        <ul .nav .navbar-nav .navbar-right>
+                          <li>
+                            <a href="http://pandoc.org/demo/example9/pandocs-markdown.html">Pandoc's Markdown
+                          <li>
+                            <a href="https://en.wikibooks.org/wiki/LaTeX/Mathematics">LaTeX Math Guide
+                          <li>
+                            <div #pfn-submit-btn>
+                              ^{fvInput submitButtonView}
                   <div .form-group>
-                    ^{fvInput submitButtonView}
+                    ^{fvInput markdownView}
                 |]
          html = markdownRes >>= mkHtml
      time <- liftIO getCurrentTime
