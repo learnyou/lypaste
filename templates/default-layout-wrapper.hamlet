@@ -14,6 +14,8 @@
           <a class="navbar-brand" href=@{HomeR}>Learn You! Pastebin
         <ul .nav .navbar-nav .navbar-right>
           <li>
+            <a href=@{BrowseR}>Browse
+          <li>
             <a href=@{PasteNewR}>New Paste
 
     <div class="container">

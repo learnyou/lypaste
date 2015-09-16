@@ -5,5 +5,6 @@ flags:
 packages:
 - '.'
 extra-deps:
+  - friendly-time-0.4
   - yesod-markdown-0.10.0
 resolver: lts-3.0

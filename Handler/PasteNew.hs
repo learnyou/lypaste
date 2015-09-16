@@ -29,17 +29,12 @@ postPasteNewR = do
           ^{mkFormView PasteNewR widget enctype}
         |]
     FormSuccess paste -> do
-      pasteID <- runDB (insert paste)
+      pasteId <- runDB (insert paste)
       defaultLayout $ do
         let delKey = pasteDeleteKey paste
         [whamlet|
-          <ul>
-            <li>
-              If you want to delete this paste, visit
-              <a href=@{PasteDeleteR delKey}>&lt;@{PasteDeleteR delKey}&gt;</a>.
-            <li>
-              If you want to edit it, please visit
-              <a href=@{PasteEditR pasteID}>&lt;@{PasteEditR pasteID}&gt;</a>.
-          <div .container>
-            #{pasteHtml paste}
+          <p>
+            Delete URL (only shows up once):
+            <code>@{PasteDeleteR delKey}
         |]
+        $(widgetFile "paste-view")

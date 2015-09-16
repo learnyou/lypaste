@@ -84,6 +84,7 @@ library
       , esqueleto
       , fast-logger
       , file-embed
+      , friendly-time
       , hjsmin
       , http-conduit
       , lens
