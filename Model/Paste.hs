@@ -1,3 +1,5 @@
+-- -*- hindent-style: "chris-done" -*-
+
 module Model.Paste where
 
 import           Control.Lens
@@ -17,33 +19,48 @@ instance Monad FormResult where
   FormFailure x >>= _ = FormFailure x
   FormSuccess x >>= f = f x
 
+makeLensesFor
+  [("fsAttrs", "_fsAttrs")]
+  ''FieldSettings
+
 pasteForm :: Maybe Markdown -> Html ->  MForm Handler (FormResult Paste, Widget)
-pasteForm existingText extra = do
-  (markdownRes, markdownView) <- mreq markdownField (bfs ("Markdown Input" :: Text)) existingText
-  (_, submitButtonView) <- mbootstrapSubmit ("Paste" :: BootstrapSubmit Text)
-  let widget = do
-        toWidget
-          [julius|
-            $('textarea').attr('rows', 20);
-          |]
-        toWidget
-          [lucius|
-            textarea {
-              font-family: monospace;
-              height: 450px;
-            }
-          |]
-        [whamlet|
-          #{extra}
-          <div .form-group .paste-input>
-            ^{fvInput markdownView}
-          <div .form-group>
-            ^{fvInput submitButtonView}
-        |]
-      html = markdownRes >>= mkHtml
-  time <- liftIO getCurrentTime
-  delKey <- liftIO mkDeleteKey
-  return (Paste <$> markdownRes <*> html <*> pure time <*> pure delKey, widget)
+pasteForm existingText extra =
+  do let (.=>) = (,)
+     (markdownRes,markdownView) <-
+       mreq markdownField
+            (over _fsAttrs
+                  (mappend ["rows" .=> "20"])
+                  (bfs ("Markdown Input" :: Text)))
+            existingText
+     (_,submitButtonView) <- mbootstrapSubmit ("Paste" :: BootstrapSubmit Text)
+     let widget =
+           do toWidget [lucius|
+                  textarea {
+                    font-family: monospace;
+                    height: 450px;
+                  }
+                |]
+              [whamlet|
+                  #{extra}
+                  <div .form-group>
+                    ^{fvInput markdownView}
+                  <div .form-group>
+                    ^{fvInput submitButtonView}
+                |]
+         html = markdownRes >>= mkHtml
+     time <- liftIO getCurrentTime
+     delKey <- liftIO mkDeleteKey
+     return (Paste <$> markdownRes <*> html <*> pure time <*> pure delKey
+            ,widget)
+
+markupGuides :: Widget
+markupGuides =
+  [whamlet|
+    <li>
+      <a href="http://pandoc.org/demo/example9/pandocs-markdown.html">Markdown guide
+    <li>
+      <a href="https://en.wikibooks.org/wiki/LaTeX/Mathematics">LaTeX math guide
+  |]
 
 errorify :: Either [Text] x -> FormResult x
 errorify = \case
