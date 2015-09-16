@@ -4,10 +4,10 @@
 /robots.txt RobotsR GET
 
 / HomeR GET
-!/#PasteId PasteViewR GET
-!/#PasteId/edit PasteEditR GET POST
-/delete/#Text PasteDeleteR GET
-!/#PasteId/raw PasteRawR GET
-/new PasteNewR GET POST
 /browse BrowseR GET
 /browse/#Int BrowsePageR GET
+/delete/#Text PasteDeleteR GET
+/new PasteNewR GET POST
+!/#PasteId PasteViewR GET
+!/#PasteId/edit PasteEditR GET POST
+!/#PasteId/raw PasteRawR GET
