@@ -30,11 +30,8 @@ postPasteNewR = do
         |]
     FormSuccess paste -> do
       pasteId <- runDB (insert paste)
-      defaultLayout $ do
-        let delKey = pasteDeleteKey paste
-        [whamlet|
-          <p>
-            Delete URL (only shows up once):
-            <code>@{PasteDeleteR delKey}
-        |]
-        $(widgetFile "paste-view")
+      let delKey = pasteDeleteKey paste
+      urlr <- getUrlRender
+      let delUrl = urlr $ PasteDeleteR delKey
+      setMessage $ toHtml $ mappend "Delete URL: " delUrl
+      redirect $ PasteViewR pasteId
