@@ -1,7 +1,8 @@
 # lypaste
 
-This is a simple paste service for markdown documents with LaTeX math,
-which will eventually be hosted at paste.learnyou.org. It is written in
+This is a simple paste service for markdown documents with LaTeX
+math. You can use it at
+[paste.learnyou.org](http://paste.learnyou.org). It is written in
 Haskell, and licensed under the [GNU AGPLv3+](LICENSE).
 
 ## Building and installing
