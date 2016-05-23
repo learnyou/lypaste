@@ -53,7 +53,7 @@ pasteForm existingText extra =
                       <div .container #newpaste-submit>
                         <ul .nav .navbar-nav .navbar-right>
                           <li>
-                            <a href="http://pandoc.org/demo/example9/pandocs-markdown.html">Pandoc's Markdown
+                            <a href="http://pandoc.org/README.html#pandocs-markdown">Pandoc's Markdown
                           <li>
                             <a href="https://en.wikibooks.org/wiki/LaTeX/Mathematics">LaTeX Math Guide
                           <li>
