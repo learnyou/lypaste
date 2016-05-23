@@ -66,12 +66,8 @@ instance Yesod App where
 
         pc <- widgetToPageContent $ do
             setTitle "Learn You Paste"
-            addStylesheetRemote "https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/sandstone/bootstrap.min.css"
-            addScriptRemote "https://code.jquery.com/jquery-1.11.3.min.js"
+            addStylesheetRemote "https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/sandstone/bootstrap.min.css"
             addScriptRemote "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
-
-            -- addStylesheet $ StaticR highlight_styles_tomorrow_night_eighties_css
-            -- addScript $ StaticR highlight_highlight_pack_js
             $(widgetFile "default-layout")
         withUrlRenderer $(hamletFile "templates/default-layout-wrapper.hamlet")
 

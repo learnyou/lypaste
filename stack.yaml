@@ -3,8 +3,8 @@ flags:
     library-only: false
     dev: false
 packages:
-- '.'
+  - '.'
 extra-deps:
   - friendly-time-0.4
-  - yesod-markdown-0.10.0
-resolver: lts-3.0
+  - yesod-markdown-0.11.0
+resolver: lts-5.11

@@ -17,3 +17,5 @@ cabal.sandbox.config
 *.swp
 *.keter
 /TAGS
+.postgres-work
+/.shake
