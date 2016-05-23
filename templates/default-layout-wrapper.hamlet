@@ -8,7 +8,7 @@
     ^{pageHead pc}
 
   <body>
-    <div .navbar .navbar-default>
+    <div .navbar .navbar-default .navbar-static-top>
       <div .container>
         <div .navbar-header>
           <a class="navbar-brand" href=@{HomeR}>Learn You! Pastebin
@@ -23,7 +23,7 @@
         ^{pageBody pc}
       <footer .small .text-center .text-muted>
         <p>
-          Copyright &copy; 2015, Learn You!.
+          Copyright &copy; 2015-2016, Learn You!.
         <p>
           The source code for this site can be
           found <a href="https://github.com/learnyou/lypaste">on GitHub</a>.

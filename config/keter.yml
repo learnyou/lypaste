@@ -8,8 +8,8 @@ stanzas:
 
     # Name of your executable. You are unlikely to need to change this.
     # Note that all file paths are relative to the keter.yml file.
-    # exec: ../dist/build/lypaste/lypaste
-    exec: ../.stack-work/install/x86_64-linux/lts-3.0/7.10.2/bin/lypaste
+    exec: ../dist/bin/lypaste
+    #exec: ../.stack-work/install/x86_64-linux/lts-3.0/7.10.2/bin/lypaste
 
 
     # Command line options passed to your application.
